@@ -50,7 +50,7 @@ import { UserService } from './user.service';
   |==========================================================================|
   | No olvides declarar FromNowPipe en el módulo.                            |
   |=========================================================================*/
-
+ 
   declarations: [
     AppComponent,
     AutoGrowDirective,
