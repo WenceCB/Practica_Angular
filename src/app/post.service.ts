@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -10,10 +10,18 @@ import { Post } from './post';
 @Injectable()
 export class PostService {
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {
+    
+   }  
 
   getPosts(): Observable<Post[]> {
-
+   
+    const options = {
+      params: new HttpParams()
+      .set('publicationDate_lte', Date.now().toString())
+      .set('_sort','publicationDate')
+      .set('_order','DESC')
+    };
     /*=========================================================================|
     | Pink Path                                                                |
     |==========================================================================|
@@ -32,7 +40,7 @@ export class PostService {
     | Una pista más, por si acaso: HttpParams.                                 |
     |=========================================================================*/
 
-    return this._http.get<Post[]>(`${environment.backendUri}/posts`);
+    return this._http.get<Post[]>(`${environment.backendUri}/posts`,options);
   }
 
   getUserPosts(id: number): Observable<Post[]> {
