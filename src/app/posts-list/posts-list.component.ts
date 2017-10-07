@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Post } from '../post';
 
@@ -9,6 +10,7 @@ import { Post } from '../post';
 })
 export class PostsListComponent {
 
+  
   @Input() posts: Post[];
 
   /*=========================================================================|
@@ -31,4 +33,14 @@ export class PostsListComponent {
   | identificador del post.                                                  |
   |=========================================================================*/
 
+  postSeleccionado : Post;
+  constructor(
+       
+    private _router:Router){};
+  
+  verDetalles(idPost : Post){
+    this.postSeleccionado = idPost;   
+    console.log(idPost); 
+    this._router.navigate(['/posts',idPost.id]);
+  }
 }
