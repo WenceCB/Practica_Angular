@@ -16,7 +16,7 @@ import { Post } from './post';
 | correspondiente, solo tienes que usarla donde proceda. Haciendo          |
 | 'moment(fecha).fromNow()' obtenemos justo lo que necesitamos.            |
 |=========================================================================*/
-
+ 
 export class FromNowPipe implements PipeTransform{  
    
     
