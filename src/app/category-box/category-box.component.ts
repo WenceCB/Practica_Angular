@@ -24,8 +24,7 @@ export class CategoryBoxComponent {
 
   @Output() categoriaSeleccionada = new EventEmitter<Category>();
   
-  notificarCategoria(category : Category) {    
-      console.log('me has notificado',category.id);
+  notificarCategoria(category : Category) {      
       this.categoriaSeleccionada.emit(category);
     }
 }
