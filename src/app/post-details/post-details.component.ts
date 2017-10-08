@@ -61,10 +61,9 @@ export class PostDetailsComponent implements OnInit {
   |=========================================================================*/
   
   categoriaSeleccionada : Category;
-  
+
   verDetallesCategoria(idCategoria : Category){
-    this.categoriaSeleccionada = idCategoria;   
-    console.log('La categoria seleccionada es ',idCategoria.id); 
+    this.categoriaSeleccionada = idCategoria;    
     this._router.navigate(['/posts/categories',idCategoria.id]);
   }
 
