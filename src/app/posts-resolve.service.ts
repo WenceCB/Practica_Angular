@@ -13,6 +13,7 @@ export class PostsResolveService implements Resolve<Post[]> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<Post[]> {
 
+    if (route.params[':userId']){
     /*=========================================================================|
     | Red Path                                                                 |
     |==========================================================================|
@@ -21,7 +22,10 @@ export class PostsResolveService implements Resolve<Post[]> {
     | servicio PostService. Recuerda mirar en los parámetros de la ruta, a ver |
     | qué encuentras.                                                          |
     |=========================================================================*/
-
+    return this._postService.getUserPosts(route.params[':userId']);
+    
+    }
+      else{
     /*=========================================================================|
     | Yellow Path                                                              |
     |==========================================================================|
@@ -30,7 +34,7 @@ export class PostsResolveService implements Resolve<Post[]> {
     | del servicio PostService. Recuerda mirar en los parámetros de la ruta, a |
     | ver qué encuentras.                                                      |
     |=========================================================================*/
-
+    }
     return this._postService.getPosts();
   }
 

@@ -20,7 +20,13 @@ export class PostPreviewComponent {
   | dicho clic se realiza en el template de este componente, necesitas,      |
   | además, un manejador para el mismo.                                      |
   |=========================================================================*/
-
+  @Output() autorSeleccionado = new EventEmitter<Post>();
+  
+  notificarAutor(post : Post) {    
+      
+      this.autorSeleccionado.emit(post);
+    }
+  
   /*=========================================================================|
   | Green Path                                                               |
   |==========================================================================|
@@ -33,7 +39,7 @@ export class PostPreviewComponent {
   @Output() postSeleccionado = new EventEmitter<Post>();
 
   notificarPost(post : Post) {    
-    console.log('Esto es lo que yo pulso',post.id);
+    
     this.postSeleccionado.emit(post);
   }
 

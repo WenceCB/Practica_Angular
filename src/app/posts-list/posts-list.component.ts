@@ -23,6 +23,18 @@ export class PostsListComponent {
   | parámetro el identificador del autor.                                    |
   |=========================================================================*/
 
+  autorSeleccionado : Post;
+  postSeleccionado : Post;
+  constructor(       
+    private _router:Router){};
+  
+  verDetallesAutor(authorPost : Post){
+    this.autorSeleccionado = authorPost;   
+    console.log('El autor pulsado es ',authorPost.author.id); 
+    this._router.navigate(['/posts/users',authorPost.author.id]);
+  }
+
+
   /*=========================================================================|
   | Green Path                                                               |
   |==========================================================================|
@@ -33,12 +45,10 @@ export class PostsListComponent {
   | identificador del post.                                                  |
   |=========================================================================*/
 
-  postSeleccionado : Post;
-  constructor(
-       
-    private _router:Router){};
   
-  verDetalles(idPost : Post){
+  
+  
+  verDetallesPost(idPost : Post){
     this.postSeleccionado = idPost;   
     console.log(idPost); 
     this._router.navigate(['/posts',idPost.id]);

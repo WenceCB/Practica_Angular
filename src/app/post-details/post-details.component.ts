@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { NativeWindow } from '../window';
 import { Post } from '../post';
@@ -14,7 +14,9 @@ export class PostDetailsComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    @Inject(NativeWindow) private _window) { }
+    @Inject(NativeWindow) private _window,
+    private _router:Router
+  ) { }
 
   ngOnInit(): void {
     this._activatedRoute
@@ -37,6 +39,15 @@ export class PostDetailsComponent implements OnInit {
   | inyectar como dependencia el Router de la app. La ruta a navegar es      |
   | '/posts/users', pasando como parámetro el identificador del autor.       |
   |=========================================================================*/
+
+  autorSeleccionado : Post; 
+  
+  verDetallesAutor(authorPost : Post){
+    this.autorSeleccionado = authorPost;   
+    console.log('El autor pulsado es ',authorPost.author.id); 
+    this._router.navigate(['/posts/users',authorPost.author.id]);
+  }
+
 
   /*=========================================================================|
   | Yellow Path                                                              |

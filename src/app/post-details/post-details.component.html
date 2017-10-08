@@ -3,7 +3,8 @@
     <div class="avatar">
       <img [src]="post.author.avatar">
     </div>
-    <div class="author">
+    <div class="author"
+    (autorSeleccionado)="verDetallesAutor($event)">
 
       <!--=======================================================================|
       | Red Path                                                                 |
