@@ -1,3 +1,4 @@
+import { Category } from '../category';
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -58,5 +59,13 @@ export class PostDetailsComponent implements OnInit {
   | '/posts/categories', pasando como parámetro el identificador de la       |
   | categoría.                                                               |
   |=========================================================================*/
+  
+  categoriaSeleccionada : Category;
+  
+  verDetallesCategoria(idCategoria : Category){
+    this.categoriaSeleccionada = idCategoria;   
+    console.log('La categoria seleccionada es ',idCategoria.id); 
+    this._router.navigate(['/posts/categories',idCategoria.id]);
+  }
 
 }

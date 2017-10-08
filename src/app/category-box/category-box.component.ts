@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Category } from '../category';
 
@@ -11,7 +11,7 @@ export class CategoryBoxComponent {
 
   @Input() categories: Category[];
 
-  /*=========================================================================|
+   /*=========================================================================|
   | Yellow Path                                                              |
   |==========================================================================|
   | Expón un atributo de salida con el decorador correspondiente. El tipo de |
@@ -21,4 +21,11 @@ export class CategoryBoxComponent {
   | además, un manejador para el mismo.                                      |
   |=========================================================================*/
 
+
+  @Output() categoriaSeleccionada = new EventEmitter<Category>();
+  
+  notificarCategoria(category : Category) {    
+      console.log('me has notificado',category.id);
+      this.categoriaSeleccionada.emit(category);
+    }
 }

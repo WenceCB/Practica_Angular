@@ -1,3 +1,4 @@
+import { observable } from 'rxjs/symbol/observable';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 
@@ -13,7 +14,6 @@ export class PostsResolveService implements Resolve<Post[]> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<Post[]> {
 
-    if (route.params['userId']){
     /*=========================================================================|
     | Red Path                                                                 |
     |==========================================================================|
@@ -22,14 +22,11 @@ export class PostsResolveService implements Resolve<Post[]> {
     | servicio PostService. Recuerda mirar en los parámetros de la ruta, a ver |
     | qué encuentras.                                                          |
     |=========================================================================*/
-    return this._postService.getUserPosts(route.params['userId']);
+    if (route.params['userId']){
     
-    }
-    else if(route.params['categoryId']){
+      return this._postService.getUserPosts(route.params['userId']);
 
-    return this._postService.getCategoryPosts(route.params['categoryId']);
     }
-      else{
     /*=========================================================================|
     | Yellow Path                                                              |
     |==========================================================================|
@@ -38,8 +35,14 @@ export class PostsResolveService implements Resolve<Post[]> {
     | del servicio PostService. Recuerda mirar en los parámetros de la ruta, a |
     | ver qué encuentras.                                                      |
     |=========================================================================*/
-    }
-    return this._postService.getPosts();
-  }
+    else if(route.params['categoryId']){
 
+      return this._postService.getCategoryPosts(route.params['categoryId']);
+
+    }
+    else{
+
+      return this._postService.getPosts();
+    }    
+  }
 }

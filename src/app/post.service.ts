@@ -1,3 +1,4 @@
+import { observable } from 'rxjs/symbol/observable';
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
@@ -6,6 +7,7 @@ import 'rxjs/add/operator/map';
 
 import { environment } from '../environments/environment';
 import { Post } from './post';
+import { Category } from './category';
 
 @Injectable()
 export class PostService {
@@ -68,10 +70,7 @@ export class PostService {
     const options = {
       params: new HttpParams()
       .set('author.id', id.toString())      
-    };
-
-
-    console.log('Red PATHHHHHHHHH');
+    };  
 
      return this._http.get<Post[]>(`${environment.backendUri}/posts`,options);
   }
@@ -106,7 +105,26 @@ export class PostService {
     | Una pista más, por si acaso: HttpParams.                                 |
     |=========================================================================*/
 
-     return this._http.get<Post[]>(`${environment.backendUri}/posts`);
+      const options = {
+      params: new HttpParams()
+      .set('_sort','publicationDate')
+      .set('_order','DESC')
+    };    
+        
+    return this._http
+    .get<Post[]>(`${environment.backendUri}/posts/`)    
+    .map((post: Post[]): Post[] => {      
+      let filtrados = [];      
+      post.forEach((post: Post) => {        
+        post.categories.forEach((category: Category) => {         
+          if (category.id == id) {  
+            filtrados.push(post);
+            return;
+          }
+        });
+      });    
+      return filtrados;         
+    });
   }
 
   getPostDetails(id: number): Observable<Post> {
