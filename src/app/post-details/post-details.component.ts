@@ -41,13 +41,10 @@ export class PostDetailsComponent implements OnInit {
   | '/posts/users', pasando como parámetro el identificador del autor.       |
   |=========================================================================*/
 
-  autorSeleccionado : Post; 
-  
-  verDetallesAutor(authorPost : Post){
-    this.autorSeleccionado = authorPost;   
-    console.log('El autor pulsado es ',authorPost.author.id); 
-    this._router.navigate(['/posts/users',authorPost.author.id]);
+  verAutor(autor : Post){
+    this._router.navigate(['/posts/users',autor.author.id]);
   }
+  
 
 
   /*=========================================================================|

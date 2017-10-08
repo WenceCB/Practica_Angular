@@ -4,10 +4,10 @@
       <img [src]="post.author.avatar">
     </div>
     <div class="author"
-    (autorSeleccionado)="verDetallesAutor($event)">
+    (click)="verAutor(post)">
 
       <!--=======================================================================|
-      | Red Path                                                                 |
+      | Red Path                                                              |
       |==========================================================================|
       | Un clic sobre el autor debería navegar a su colección de posts.          |
       |========================================================================-->
