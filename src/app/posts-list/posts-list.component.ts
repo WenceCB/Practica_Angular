@@ -29,8 +29,7 @@ export class PostsListComponent {
     private _router:Router){};
   
   verDetallesAutor(authorPost : Post){
-    this.autorSeleccionado = authorPost;   
-    console.log('El autor pulsado es ',authorPost.author.id); 
+    this.autorSeleccionado = authorPost;     
     this._router.navigate(['/posts/users',authorPost.author.id]);
   }
 
@@ -49,8 +48,7 @@ export class PostsListComponent {
   postSeleccionado : Post;
   
   verDetallesPost(idPost : Post){
-    this.postSeleccionado = idPost;   
-    console.log(idPost); 
+    this.postSeleccionado = idPost;    
     this._router.navigate(['/posts',idPost.id]);
   }
 }
