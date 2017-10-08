@@ -24,7 +24,7 @@ export class PostsListComponent {
   |=========================================================================*/
 
   autorSeleccionado : Post;
-  postSeleccionado : Post;
+  
   constructor(       
     private _router:Router){};
   
@@ -46,7 +46,7 @@ export class PostsListComponent {
   |=========================================================================*/
 
   
-  
+  postSeleccionado : Post;
   
   verDetallesPost(idPost : Post){
     this.postSeleccionado = idPost;   
