@@ -25,6 +25,10 @@ export class PostsResolveService implements Resolve<Post[]> {
     return this._postService.getUserPosts(route.params['userId']);
     
     }
+    else if(route.params['categoryId']){
+
+    return this._postService.getCategoryPosts(route.params['categoryId']);
+    }
       else{
     /*=========================================================================|
     | Yellow Path                                                              |
