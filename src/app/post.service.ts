@@ -143,7 +143,7 @@ export class PostService {
     | inserción.                                                               |
     |=========================================================================*/
 
-    return null;
+    return this._http.post<Post>(`${environment.backendUri}/posts`, post);
   }
 
 }
